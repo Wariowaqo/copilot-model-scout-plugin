@@ -1,0 +1,23 @@
+{
+    "$schema": "https://developer.microsoft.com/json-schemas/copilot/plugin/v2.4/schema.json",
+    "schema_version": "v2.4",
+    "name_for_human": "Model Scout${{APP_NAME_SUFFIX}}",
+    "description_for_human": "Live Hugging Face model cards with memory estimates and a will-it-run check for your machine.",
+    "contact_email": "publisher-email@example.com",
+    "namespace": "modelscout",
+    "functions": [],
+    "runtimes": [
+        {
+            "type": "RemoteMCPServer",
+            "spec": {
+                "url": "${{MODEL_SCOUT_MCP_URL}}"
+            },
+            "run_for_functions": [
+                "*"
+            ],
+            "auth": {
+                "type": "None"
+            }
+        }
+    ]
+}

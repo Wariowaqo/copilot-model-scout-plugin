@@ -1,0 +1,23 @@
+{
+    "$schema": "https://developer.microsoft.com/json-schemas/copilot/plugin/v2.4/schema.json",
+    "schema_version": "v2.4",
+    "name_for_human": "Microsoft Learn",
+    "description_for_human": "Search and read Microsoft Learn docs for Azure deployment steps (official Microsoft Learn MCP server).",
+    "contact_email": "publisher-email@example.com",
+    "namespace": "learnmicro",
+    "functions": [],
+    "runtimes": [
+        {
+            "type": "RemoteMCPServer",
+            "spec": {
+                "url": "https://learn.microsoft.com/api/mcp"
+            },
+            "run_for_functions": [
+                "*"
+            ],
+            "auth": {
+                "type": "None"
+            }
+        }
+    ]
+}

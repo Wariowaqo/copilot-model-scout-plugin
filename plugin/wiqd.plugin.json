@@ -1,0 +1,9 @@
+{
+  "schemaVersion": 1,
+  "name": "AI Model Scout",
+  "capabilities": [
+    "declarativeAgent",
+    "agentSkills",
+    "agentConnectors"
+  ]
+}

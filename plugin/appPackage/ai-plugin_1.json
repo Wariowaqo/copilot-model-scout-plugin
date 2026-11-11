@@ -1,0 +1,23 @@
+{
+    "$schema": "https://developer.microsoft.com/json-schemas/copilot/plugin/v2.4/schema.json",
+    "schema_version": "v2.4",
+    "name_for_human": "Hugging Face Hub",
+    "description_for_human": "Search Hugging Face for open-weight models and read model details (official Hugging Face MCP server).",
+    "contact_email": "publisher-email@example.com",
+    "namespace": "huggingfac",
+    "functions": [],
+    "runtimes": [
+        {
+            "type": "RemoteMCPServer",
+            "spec": {
+                "url": "https://huggingface.co/mcp"
+            },
+            "run_for_functions": [
+                "*"
+            ],
+            "auth": {
+                "type": "None"
+            }
+        }
+    ]
+}

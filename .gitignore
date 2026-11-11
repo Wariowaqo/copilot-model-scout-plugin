@@ -1,0 +1,19 @@
+# Secrets and per-developer environment (app IDs, tenant IDs, share links)
+.env
+.env.*
+!plugin/env/.env.dev
+.dev.vars
+*.pem
+*.key
+
+# Build output and local state
+node_modules/
+dist/
+.wrangler/
+server/src/generated/
+plugin/appPackage/build/
+*.zip
+
+# OS and editor noise
+.DS_Store
+Thumbs.db

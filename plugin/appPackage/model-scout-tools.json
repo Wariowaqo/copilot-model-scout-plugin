@@ -1,0 +1,148 @@
+{
+  "tools": [
+    {
+      "name": "show_model_card",
+      "title": "Show model card",
+      "description": "Shows a live model card for one open-weight Hugging Face model: parameter count, size on disk, downloads, likes, license, last update, available GGUF quantizations, and the RAM/GPU memory needed at each quantization level. The user can change quantization and context length in the card and check whether it runs on their machine. Use when the user asks about a specific model's size, hardware requirements, quantization, or whether it will run locally.",
+      "inputSchema": {
+        "type": "object",
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "properties": {
+          "model_id": {
+            "type": "string",
+            "minLength": 3,
+            "maxLength": 200,
+            "description": "Hugging Face model id in the form \"owner/name\", for example \"Qwen/Qwen3-8B\". A huggingface.co URL also works."
+          },
+          "quantization": {
+            "description": "Quantization level to preselect: F16, Q8_0, Q6_K, Q5_K_M, Q4_K_M, Q4_0, Q3_K_M, Q2_K. Defaults to Q4_K_M.",
+            "type": "string",
+            "maxLength": 20
+          },
+          "context_length": {
+            "description": "Context length in tokens used for the KV-cache estimate. Defaults to 8192.",
+            "type": "integer",
+            "minimum": 256,
+            "maximum": 1048576
+          }
+        },
+        "required": [
+          "model_id"
+        ]
+      },
+      "annotations": {
+        "title": "Show model card",
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": true
+      },
+      "_meta": {
+        "ui": {
+          "resourceUri": "ui://model-scout/model-card.html"
+        },
+        "ui/resourceUri": "ui://model-scout/model-card.html"
+      }
+    },
+    {
+      "name": "compare_models",
+      "title": "Compare models",
+      "description": "Compares two or three Hugging Face models side by side in a live widget: parameters, size, downloads, likes, license, and the memory each needs at the selected quantization and context length. Use after shortlisting candidates, or when the user asks to compare specific models.",
+      "inputSchema": {
+        "type": "object",
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "properties": {
+          "model_ids": {
+            "minItems": 2,
+            "maxItems": 3,
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 3,
+              "maxLength": 200,
+              "description": "Hugging Face model id in the form \"owner/name\", for example \"Qwen/Qwen3-8B\". A huggingface.co URL also works."
+            },
+            "description": "Two or three Hugging Face model ids."
+          },
+          "quantization": {
+            "description": "Quantization level to preselect: F16, Q8_0, Q6_K, Q5_K_M, Q4_K_M, Q4_0, Q3_K_M, Q2_K. Defaults to Q4_K_M.",
+            "type": "string",
+            "maxLength": 20
+          },
+          "context_length": {
+            "description": "Context length in tokens used for the KV-cache estimate. Defaults to 8192.",
+            "type": "integer",
+            "minimum": 256,
+            "maximum": 1048576
+          }
+        },
+        "required": [
+          "model_ids"
+        ]
+      },
+      "annotations": {
+        "title": "Compare models",
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": true
+      },
+      "_meta": {
+        "ui": {
+          "resourceUri": "ui://model-scout/model-card.html"
+        },
+        "ui/resourceUri": "ui://model-scout/model-card.html"
+      }
+    },
+    {
+      "name": "estimate_hardware",
+      "title": "Estimate hardware",
+      "description": "Estimates the RAM or GPU memory needed to run a Hugging Face model at a given quantization and context length, and optionally checks it against the user's machine. Returns text only. Use for a quick answer such as \"can I run X on 16 GB?\"; use show_model_card when the user wants to explore options.",
+      "inputSchema": {
+        "type": "object",
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "properties": {
+          "model_id": {
+            "type": "string",
+            "minLength": 3,
+            "maxLength": 200,
+            "description": "Hugging Face model id in the form \"owner/name\", for example \"Qwen/Qwen3-8B\". A huggingface.co URL also works."
+          },
+          "quantization": {
+            "description": "Quantization level to preselect: F16, Q8_0, Q6_K, Q5_K_M, Q4_K_M, Q4_0, Q3_K_M, Q2_K. Defaults to Q4_K_M.",
+            "type": "string",
+            "maxLength": 20
+          },
+          "context_length": {
+            "description": "Context length in tokens used for the KV-cache estimate. Defaults to 8192.",
+            "type": "integer",
+            "minimum": 256,
+            "maximum": 1048576
+          },
+          "ram_gb": {
+            "description": "The user's system RAM in GB, if known.",
+            "type": "number",
+            "minimum": 0,
+            "maximum": 4096
+          },
+          "vram_gb": {
+            "description": "The user's GPU memory in GB, if known. Use 0 for no dedicated GPU.",
+            "type": "number",
+            "minimum": 0,
+            "maximum": 4096
+          }
+        },
+        "required": [
+          "model_id"
+        ]
+      },
+      "annotations": {
+        "title": "Estimate hardware",
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": true
+      }
+    }
+  ]
+}

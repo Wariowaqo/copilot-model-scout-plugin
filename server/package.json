@@ -1,0 +1,28 @@
+{
+  "name": "model-scout-mcp",
+  "version": "0.1.0",
+  "private": true,
+  "description": "MCP server with a live MCP Apps widget that shows Hugging Face model details, quantization, and the RAM/GPU needed to run a model.",
+  "type": "module",
+  "scripts": {
+    "build:widget": "node scripts/build-widget.mjs",
+    "dev": "npm run build:widget && wrangler dev",
+    "deploy": "npm run build:widget && wrangler deploy",
+    "test": "vitest run",
+    "typecheck": "npm run build:widget && tsc --noEmit -p tsconfig.json && tsc --noEmit -p tsconfig.widget.json",
+    "tools-json": "node scripts/mcp-check.mjs http://127.0.0.1:8787/mcp --tools-json model-scout-tools.json"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/ext-apps": "2.0.4",
+    "@modelcontextprotocol/server": "2.4.0",
+    "agents": "0.33.0",
+    "zod": "^4.2.0"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^5.20261110.1",
+    "esbuild": "^0.25.0",
+    "typescript": "^5.9.0",
+    "vitest": "^3.2.0",
+    "wrangler": "4.160.0"
+  }
+}

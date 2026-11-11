@@ -1,0 +1,93 @@
+{
+  "$schema": "https://developer.microsoft.com/en-us/json-schemas/teams/v1.29/MicrosoftTeams.schema.json",
+  "manifestVersion": "1.29",
+  "version": "1.0.0",
+  "id": "${{TEAMS_APP_ID}}",
+  "developer": {
+    "name": "${{DEVELOPER_NAME}}",
+    "websiteUrl": "${{DEVELOPER_WEBSITE_URL}}",
+    "privacyUrl": "${{DEVELOPER_PRIVACY_URL}}",
+    "termsOfUseUrl": "${{DEVELOPER_TERMS_URL}}"
+  },
+  "icons": {
+    "color": "color.png",
+    "outline": "outline.png"
+  },
+  "name": {
+    "short": "AI Model Scout${{APP_NAME_SUFFIX}}",
+    "full": "AI Model Scout"
+  },
+  "description": {
+    "short": "Find open-weight AI models, see what hardware they need, and deploy on Azure.",
+    "full": "AI Model Scout helps you pick an open-weight AI model from Hugging Face. Describe a task and it shortlists three candidates and shows them side by side in a live widget: parameters, size on disk, downloads, likes, license, and the RAM or GPU memory each needs. Change the quantization (FP16, Q8, Q4_K_M, and more) or the context length and the numbers update instantly, with a plain-language explanation of each level and a check of whether it runs on your machine. It can review a model's license against a checklist and explain how to deploy it on Azure AI Foundry or Azure Container Apps, citing Microsoft Learn. It reads only public data from the Hugging Face Hub and Microsoft Learn; it can't see your tenant or files. Memory figures are estimates, and license notes aren't legal advice."
+  },
+  "accentColor": "#FFFFFF",
+  "permissions": [
+    "identity",
+    "messageTeamMembers"
+  ],
+  "validDomains": [],
+  "agentConnectors": [
+    {
+      "id": "microsoft-learn",
+      "displayName": "Microsoft Learn",
+      "description": "Official Microsoft Learn documentation search, full-page fetch, and code samples. Used for Azure AI Foundry and Azure Container Apps deployment steps.",
+      "toolSource": {
+        "remoteMcpServer": {
+          "mcpServerUrl": "https://learn.microsoft.com/api/mcp",
+          "mcpToolDescription": {
+            "file": "microsoft-learn-tools.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "hugging-face",
+      "displayName": "Hugging Face",
+      "description": "Official Hugging Face Hub MCP server: search models, datasets, and Spaces, and read model card metadata and licenses. Anonymous, read-only.",
+      "toolSource": {
+        "remoteMcpServer": {
+          "mcpServerUrl": "https://huggingface.co/mcp",
+          "mcpToolDescription": {
+            "file": "hugging-face-tools.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "model-scout",
+      "displayName": "Model Scout",
+      "description": "Live Hugging Face model cards and comparisons with a memory estimate for each quantization level, plus a check of whether a model fits your RAM and GPU. Read-only; renders an interactive widget in Copilot Chat.",
+      "toolSource": {
+        "remoteMcpServer": {
+          "mcpServerUrl": "${{MODEL_SCOUT_MCP_URL}}",
+          "mcpToolDescription": {
+            "file": "model-scout-tools.json"
+          }
+        }
+      }
+    }
+  ],
+  "agentSkills": [
+    {
+      "folder": "skills/model-shortlist"
+    },
+    {
+      "folder": "skills/hardware-fit"
+    },
+    {
+      "folder": "skills/license-and-risk-check"
+    },
+    {
+      "folder": "skills/deploy-on-azure"
+    }
+  ],
+  "copilotAgents": {
+    "declarativeAgents": [
+      {
+        "id": "declarativeAgent",
+        "file": "declarativeAgent.json"
+      }
+    ]
+  }
+}

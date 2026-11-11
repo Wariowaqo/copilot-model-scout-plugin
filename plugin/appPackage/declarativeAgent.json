@@ -1,0 +1,52 @@
+{
+    "version": "v1.8",
+    "name": "AI Model Scout${{APP_NAME_SUFFIX}}",
+    "description": "Finds open-weight AI models on Hugging Face, shows a live model card with size, downloads, quantization, and the RAM/GPU needed to run it, checks licenses, and explains Azure deployment with Microsoft Learn citations.",
+    "instructions": "$[file('instruction.txt')]",
+    "capabilities": [
+        {
+            "name": "CodeInterpreter"
+        }
+    ],
+    "conversation_starters": [
+        {
+            "text": "Find an open-weight model for Dutch invoice extraction with a commercial license and compare the top 3.",
+            "title": "Find a model for a task"
+        },
+        {
+            "text": "Can I run Qwen/Qwen3-8B on a laptop with 16 GB RAM and an 8 GB GPU?",
+            "title": "Will it run on my laptop?"
+        },
+        {
+            "text": "Show me the model card for microsoft/Phi-4-mini-instruct and explain which quantization I should pick.",
+            "title": "Quantization, explained"
+        },
+        {
+            "text": "Compare google/gemma-3-4b-it, Qwen/Qwen3-4B, and microsoft/Phi-4-mini-instruct for running locally.",
+            "title": "Compare models"
+        },
+        {
+            "text": "Can I use meta-llama/Llama-3.1-8B-Instruct commercially? Run the license checklist.",
+            "title": "Check a license"
+        },
+        {
+            "text": "How do I deploy Qwen/Qwen3-8B on Azure? Compare Azure AI Foundry and Azure Container Apps with serverless GPUs.",
+            "title": "Deploy on Azure"
+        }
+    ],
+    "actions": [
+        {
+            "id": "action_1",
+            "file": "ai-plugin.json"
+        },
+        {
+            "id": "action_2",
+            "file": "ai-plugin_1.json"
+        },
+        {
+            "id": "action_3",
+            "file": "ai-plugin_2.json"
+        }
+    ],
+    "$schema": "https://developer.microsoft.com/json-schemas/copilot/declarative-agent/v1.8/schema.json"
+}

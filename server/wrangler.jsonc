@@ -1,0 +1,13 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "model-scout-mcp",
+  "main": "src/index.ts",
+  "compatibility_date": "2026-11-01",
+  "compatibility_flags": ["nodejs_compat"],
+  "observability": { "enabled": true },
+  "vars": {
+    // Optional: extra browser Origin hostnames to accept (comma-separated), for example
+    // the widget host from Microsoft's Widget Host URL Generator if it differs.
+    "EXTRA_ORIGIN_HOSTNAMES": ""
+  }
+}
